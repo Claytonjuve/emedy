@@ -23,7 +23,7 @@
 	$row = mysqli_fetch_assoc($result);
 	if(empty($row)){
 				//insert new product
-		$query = "INSERT INTO patient (PATIENT_ID, SURNAME, NAME, EMAIL, CONTACT_NO, TITLE)
+		$query = "INSERT INTO patient (PATIENT_ID, SURNAME, PT_NAME, EMAIL, CONTACT_NO, TITLE)
 				  VALUES ('$ptId', '$ptSurname', '$ptName', '$ptEmail', '$ptTel' ,'$ptTitle')";
 		$result = mysqli_query($connection, $query) or die("Error in query44: " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
@@ -34,7 +34,7 @@
 	} else {
 		//update existing patient
 		$query = "UPDATE patient 
-				  SET NAME = '$ptName', SURNAME = '$ptSurname', PATIENT_ID = '$ptId', EMAIL = '$ptEmail', Title = '$ptTitle', CONTACT_NO = '$ptTel'
+				  SET PT_NAME = '$ptName', SURNAME = '$ptSurname', PATIENT_ID = '$ptId', EMAIL = '$ptEmail', Title = '$ptTitle', CONTACT_NO = '$ptTel'
 				  WHERE PATIENT_ID = '$ptId'";
 		$result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
 		$_SESSION['success'] = "Patient updated!";

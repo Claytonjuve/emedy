@@ -1,4 +1,20 @@
-<?php include_once('header.php'); ?>
+<?php include_once('header.php'); 
+
+	 //show error or success
+              if(isset($_SESSION['success'])) {
+              echo '<div class="alert alert-success" role="success">'.$_SESSION['success'].'</div>';
+                            unset($_SESSION['success']);
+              
+              }
+
+        
+
+            
+
+
+
+
+?>
 
 
 
@@ -31,11 +47,24 @@
 	                	<div class="row">
                 			<div class="col-md-4">
 			                	<div class="section-1-box-icon">
+			                		<i class="fa fa-tasks" aria-hidden="true"></i>
+			                	</div>
+		                	</div>
+	                		<div class="col-md-8"><a href="admin-det-edit.php">
+	                    		<h3>Admin Details</h3>
+	                    		<p>You can add/update/delete admin details from here</p>
+	                    	</div></a>
+	                    </div>
+                    </div>
+                    <div class="col-md-4 section-1-box wow fadeInDown">
+	                	<div class="row">
+                			<div class="col-md-4">
+			                	<div class="section-1-box-icon">
 			                		<i class="fas fas fa-prescription"></i>
 			                	</div>
 		                	</div>
 	                		<div class="col-md-8"><a href="pharm-det-edit.php">
-	                    		<h3>Pharmacists</h3>
+	                    		<h3>Pharmacists Details</h3>
 	                    		<p>You can add/update/delete pharmacists details from here</p>
 	                    	</div></a>
 	                    </div>

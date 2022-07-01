@@ -5,6 +5,9 @@
     }
   
     require_once('process-data/connect_db.php');
+
+
+
 ?>
 
 
@@ -19,9 +22,21 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" rel="stylesheet" id="bootstrap-css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" id="bootstrap-css">
 
+<script type="text/javascript">
+    function showPass() {
+  var pwd = document.getElementById("Password");
+  if (pwd.type === "password") {
+    pwd.type = "text";
+  } else {
+    pwd.type = "password";
+  }
+}
+
+</script>
+
 
 </head>
-<body>
+
 	<body>
 
 
@@ -35,13 +50,13 @@
                 
             </div>
             <form action="process-data/login-process.php" method="POST">
-
+<article class="wrapper">
             <div class="login_form_wrapper">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <!-- login_wrapper -->
-                        <div class="login_wrapper">
+                        <div>
                             
                             </div>
                             <h2>Welcome to eMEDY</h2>
@@ -53,10 +68,11 @@
                             <div class="formsix-e">
                                 <div class="form-group i-password">
                                     <input type="password" class="form-control" required="" name="Password" id="Password" placeholder="Password *">
+                                    <input type="checkbox" onclick="showPass()"> Show Password
                                 </div>
                             </div>
                             <div class="login_remember_box">
-                                <a href="#" class="forget_password">
+                                <a href="contact-us.php" class="forget_password">
                                     Forgot Password
                                 </a>
                             </div>
@@ -64,7 +80,7 @@
                                 <input type="submit" value="Login" class="btn btn-success"> 
                             </div>
                             <div class="login_message">
-                                <p>Don&rsquo;t have an account ? <a href="#"> Sign up </a> </p>
+                                <p>Don&rsquo;t have an account ? <a href="contact-us.php"> Contact eMedy </a> </p>
                             </div>
                         </div>
                         <!-- /.login_wrapper-->
@@ -74,6 +90,7 @@
         </form>
     
         </div>
+</article>
 </body>
 
 </body>

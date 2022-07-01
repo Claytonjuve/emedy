@@ -1,0 +1,256 @@
+@charset "utf-8"
+
+/* Variables
+   ============================================== */
+
+/* placeholder */
+$placeholder-color = inherit
+$placeholder-opacity = .7
+
+/* buttons */
+$buttons-border-radius = 50px
+$buttons-primary-background-color = #4776e6 //#8e54e9
+$buttons-primary-color = #fff
+
+
+/* Mixins
+   ============================================== */
+
+clear-fix()
+  &:before
+  &:after
+    display table
+    content ''
+  &:after
+    clear both
+    
+    
+/* Reset
+   ============================================== */
+
+*
+*:after
+*:before
+  box-sizing border-box
+  margin 0
+  padding 0
+
+  
+/* Common
+   ============================================== */
+   
+html
+  font-family "Open Sans"
+  min-height 100%
+  min-width 320px
+  
+body
+  background-color #663faa
+  background -ms-linear-gradient(top left, #663faa 0%, #585fd5 100%)
+  background -webkit-linear-gradient(top left,#663faa,#585fd5)
+  background -o-linear-gradient(top left,#663faa,#585fd5)
+  background -moz-linear-gradient(top left,#663faa,#585fd5)
+  background linear-gradient(top left, #663faa, #585fd5)
+  background-repeat no-repeat
+  font-family 'Open Sans', Helvetica, Arial, sans-serif
+  font-size 14px
+  min-width 100%
+  min-height 100%
+  overflow scroll
+  padding 30px 0
+   
+.container
+  display block
+  background #fff
+  width 320px
+  min-height 400px
+  border-radius 3px
+  margin 0 auto
+  padding 30px
+
+  h1
+    position relative
+    display inline-block
+    color #000
+    font-size 2em
+    font-weight 400
+    text-transform uppercase
+    text-align center
+    margin 0 0 20px
+    padding 0
+    &:after
+      display block
+      background #000
+      content ''
+      height 3px
+      width 50%
+      margin 20px auto 0
+      padding 0
+
+.form
+  display block
+  
+  &__group
+    margin 10px 0 0
+    
+    &--error
+      &.form__pincode
+        & > input
+          background-color #eb3b3b
+          &[disabled]
+            background-color #eb3b3b
+            color #fff
+            opacity 1
+
+    &--success
+      &.form__pincode
+        & > input
+          background-color #32c832
+          &[disabled]
+            background-color #32c832
+            color #fff
+            opacity 1
+          
+  &__pincode
+    display block
+    width 100%
+    margin 10px auto 20px
+    padding 0
+    clear-fix()
+    
+    & > label
+      display block
+      text-align center
+      margin 10px 0
+
+    & > input[type="number"]
+      -moz-appearance none
+      -webkit-appearance none
+      appearance none
+      
+    & > input
+      display inline-block
+      float left
+      width 15%
+      height 50px
+      line-height 48px
+      text-align center
+      font-size 2em
+      color #181819
+      border 0
+      border-bottom 2px solid rgba(#000, .3)
+      border-radius 2px 2px 0 0
+      transition background-color .3s, color .3s, opacity .3s
+      cursor default
+      user-select none
+      margin 0
+      margin-top 10px
+      margin-right 2%
+      padding 0
+      
+      &:focus
+        outline 0
+        box-shadow none
+        border-color #1486f0
+        animation border-pulsate 1.5s infinite
+        -webkit-tap-highlight-color transparent
+        
+      &:last-child
+        margin-right 0
+        
+      &[disabled]
+        background #eee
+        opacity 1
+
+  &__buttons
+    text-align center
+    margin 0 auto
+    padding 10px 0 0
+
+
+/* Button
+   ============================================== */
+
+.button
+  position relative
+  display inline-block
+  font-size 14px
+  font-weight 600
+  text-decoration none
+  outline 0
+  cursor pointer
+  height 50px
+  line-height 50px
+  margin 0
+  padding 0 20px
+
+  /* primary */
+  &--primary
+    background-color $buttons-primary-background-color
+    color $buttons-primary-color
+    line-height 48px
+    border 1px solid transparent
+    border-radius $buttons-border-radius
+    text-transform uppercase
+    white-space nowrap
+    transition all .2s ease-in-out
+    box-shadow 0 2px 4px rgba(#000, 0.2)
+    user-select none
+    -webkit-tap-highlight-color rgba(#000, .1)
+    -webkit-touch-callout none
+    button-outline(3px, $buttons-border-radius, rgba(#000, .3))
+
+    &:focus
+    &:hover
+      background-color darken($buttons-primary-background-color, 10%)
+      color $buttons-primary-color
+
+    &:active
+      background-color darken($buttons-primary-background-color, 20%)
+      color $buttons-primary-color
+      box-shadow inset 0 0 4px 2px rgba(#000, .1)
+
+    /* disabled */
+    &[disabled]
+      background-color $buttons-primary-background-color
+      user-select none
+      pointer-events none
+      cursor not-allowed
+      -moz-opacity .3
+      -khtml-opacity .3
+      opacity .3
+
+      
+/* Placeholder
+   ============================================== */
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder
+  color $placeholder-color
+  opacity $placeholder-opacity
+
+/* Firefox 19+ */
+::-moz-placeholder
+  color $placeholder-color
+  opacity $placeholder-opacity
+
+/* IE 10+ */
+:-ms-input-placeholder
+  color $placeholder-color
+  opacity $placeholder-opacity
+
+/* Firefox 18- */
+:-moz-placeholder
+  color $placeholder-color
+  opacity $placeholder-opacity
+
+  
+/* Animations
+   ============================================== */
+
+@keyframes border-pulsate
+  0%
+    border-color rgba(#1486f0, 1)
+  50%
+    border-color rgba(#000, .3)
+  100%
+    border-color rgba(#1486f0, 1)

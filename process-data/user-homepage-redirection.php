@@ -1,4 +1,6 @@
 <?php
+
+	
 	if (session_status() == PHP_SESSION_NONE) {
     	session_start();
 	}
@@ -8,6 +10,7 @@
     
     //get a connection to the databases
     $connection = OpenCon();
+
 
 
     if ($_SESSION['currentRole']=="admin"){
@@ -27,7 +30,6 @@
     	exit;
 } 
 
-	
 
 
 ?>

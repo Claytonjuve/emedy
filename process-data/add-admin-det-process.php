@@ -4,11 +4,11 @@
 	    $connection = OpenCon();
 	
 	//extract all the required variables and validate them
-	$pharmName = mysqli_real_escape_string($connection, trim($_POST['pharmName']));
-	$pharmSurname = mysqli_real_escape_string($connection, trim($_POST['pharmSurname']));
-	$pharmID = mysqli_real_escape_string($connection, trim($_POST['pharmID']));
-	$pharmEmail = mysqli_real_escape_string($connection, trim($_POST['pharmEmail']));
-	$pharmUsername = mysqli_real_escape_string($connection, trim($_POST['pharmUsername']));
+	$adminName = mysqli_real_escape_string($connection, trim($_POST['adminName']));
+	$adminSurname = mysqli_real_escape_string($connection, trim($_POST['adminSurname']));
+	$adminID = mysqli_real_escape_string($connection, trim($_POST['adminID']));
+	$adminEmail = mysqli_real_escape_string($connection, trim($_POST['adminEmail']));
+	$adminUsername = mysqli_real_escape_string($connection, trim($_POST['adminUsername']));
 
 
 		 //Generate Random Password
@@ -17,7 +17,7 @@
 		//encrypt pwd
 	$passwordEncrypted = hash('sha512',$password);
 
-	$query = "SELECT * FROM login WHERE USERNAME = '$pharmUsername'";
+	$query = "SELECT * FROM login WHERE USERNAME = '$adminUsername'";
 	//result true or false
 	$result = mysqli_query($connection, $query) or die("Error in query here: " . mysqli_error($connection));
 	
@@ -26,14 +26,14 @@
 	if(empty($row)){
 				//insert new product
 		$query = "INSERT INTO login (PASSWORD, ROLE, USERNAME)
-				  VALUES ('$passwordEncrypted', 'pharm', '$pharmUsername')";
+				  VALUES ('$passwordEncrypted', 'admin', '$adminUsername')";
 		$result = mysqli_query($connection, $query) or die("Error in query22 " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
 }
 
 
 
-	$query = "SELECT * FROM pharmacist_det WHERE USERNAME = '$pharmUsername'";
+	$query = "SELECT * FROM admin_det WHERE USERNAME = '$adminUsername'";
 	//result true or false
 	$result = mysqli_query($connection, $query) or die("Error in query 2: " . mysqli_error($connection));
 	
@@ -41,17 +41,17 @@
 	$row = mysqli_fetch_assoc($result);
 	if(empty($row)){
 				//insert new product
-		$query = "INSERT INTO pharmacist_det (ID, USERNAME, SURNAME, NAME, EMAIL, PHARM_ALLOCATED)
-				  VALUES ('$pharmID', '$pharmUsername', '$pharmSurname', '$pharmName', '$pharmEmail', Null)";
+		$query = "INSERT INTO admin_det (ID, USERNAME, SURNAME, NAME, EMAIL)
+				  VALUES ('$adminID', '$adminUsername', '$adminSurname', '$adminName', '$adminEmail')";
 		$result = mysqli_query($connection, $query) or die("Error in query44: " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
-		$_SESSION['success'] = "Pharmacists added!";
+		$_SESSION['success'] = "adminacists added!";
 
 		//send email process
       $subject = 'eMedy New User Login Details';
-      $body = 'Dear ' .$pharmSurname. ' ' .$pharmName. '
+      $body = 'Dear ' .$adminSurname. ' ' .$adminName. '
 			Your eMedy account is created. Kindly login with the following details:
-			Username: ' .$pharmUsername.' 
+			Username: ' .$adminUsername.' 
 			Password: ' .$password.  '
 			May we remind you to change your password as soon as you login. ';
 
@@ -67,12 +67,12 @@
 		exit();
 	} else {
 		//update existing product
-		$query = "UPDATE pharmacists_det 
-				  SET NAME = '$pharmName', SURNAME = '$pharmSurname', REG_NUM = '$pharmID', EMAIL = '$pharmEmail', TITLE_ID = '$title', USERNAME = $'pharmUsername'
-				  WHERE USERNAME = '$pharmUsername'";
+		$query = "UPDATE admin_det 
+				  SET NAME = '$adminName', SURNAME = '$adminSurname', REG_NUM = '$adminID', EMAIL = '$adminEmail', TITLE_ID = '$title', USERNAME = $'adminUsername'
+				  WHERE USERNAME = '$adminUsername'";
 		$result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
-		$_SESSION['success'] = "Pharmacist updated!";
-		header('Location: ../mdhome.php');
+		$_SESSION['success'] = "Admin updated!";
+		header('Location: ../admin-home.php');
 		exit();
 
 	}

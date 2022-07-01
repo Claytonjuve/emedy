@@ -10,7 +10,7 @@
 
 <form action="process-data/add-md-det-process.php" method="POST">
 	<div class="container">
-<h6>Retreive a doctor username</h6>
+<h3>Retreive a doctor username</h3>
   <div class="form-group row">
     <label for="mdSearch" class="col-sm-2 col-form-label">Search Doctor</label>
     <div class="col-sm-9">
@@ -100,7 +100,7 @@
     
     //show in the table
     while($title = mysqli_fetch_assoc($result)) {
-      echo '<option value="'.$title['ID'].'data-select2-id="select2-data-141-mcra">'.$title['SHORTNAME'].'</option>';
+      echo '<option value="'.$title['ID'].'"data-select2-id="select2-data-141-mcra">'.$title['SHORTNAME'].'</option>';
     }
     ?>
   </select>
@@ -109,7 +109,7 @@
 
 
 
-
+  <a href="admin-home.php"><input type="button" class="btn btn-dark" value="Back"></a>
   <input type="submit" class="btn btn-success" value="Submit">
 </div>
 </form>

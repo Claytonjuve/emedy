@@ -58,56 +58,9 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto navbar-menu-items fadeIn animated">
 
 
-<?php 
-
-                 if ($_SESSION['currentRole']=="admin"){
-echo       '<li class="nav-item">
-                      <a class="nav-link scroll-link" href="admin-home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-                  </li>';
-    
-}
-      if ($_SESSION['currentRole']=="md"){
-echo        '<li class="nav-item">
-                      <a class="nav-link scroll-link" href="md-home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-                  </li>';
-} 
-
-      if ($_SESSION['currentRole']=="pharm"){
-echo        '<li class="nav-item">
-                      <a class="nav-link scroll-link" href="pharm-home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-                  </li>';
-} 
-
-
-?>
-
-                  <li class="nav-item">
-                      <a class="nav-link scroll-link" href="#top-content"></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link scroll-link" href="#section-1">Personal Details</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link scroll-link" href="change-pwd.php">Change Password</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link scroll-link" href="contact-us.php">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link scroll-link" href="process-data/logout-process.php">Sign out</a>
-                  </li>
-              </ul>
-              <form class="form-inline navbar-search-form disabled ml-auto" action="" method="post">
-                <input type="search" name="search" placeholder="Type and hit enter..." aria-label="Search" class="search form-control">
-              </form>
-              <ul class="navbar-nav navbar-search-button">
-                  <li class="nav-item">
-                      <a class="nav-link search-button" href="#"><i class="fas fa-search"></i></a>
-                  </li>
-              </ul>
+              
           </div>
         </div>
     </nav>
@@ -125,37 +78,14 @@ echo        '<li class="nav-item">
                               <p>
                                 <?php
   
-  echo '<h2">You are logged in as '.$_SESSION['currentTitle'].' '.$_SESSION['currentSurname'].' '.$_SESSION['currentName'].' ('.$_SESSION['currentUser'].')</h2>';
+  echo '<h2">You are logging in as '.$_SESSION['currentTitle'].' '.$_SESSION['currentSurname'].' '.$_SESSION['currentName'].' ('.$_SESSION['currentUser'].')</h2>';
 
 ?>
                               </p>
                             </div>
-                            <?php
-
-    //use the database
-    require_once("process-data/connect_db.php");
-    $connection = OpenCon();
-
-    $Username = $_SESSION['currentUser'];
-            //could not connect to database
-  if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error(); //error connection mysql 
-      }
-
-  else {
-    $result = mysqli_query($connection,"SELECT PHARM_NAME FROM pharmacist_det 
-    Left Join pharmacy on pharmacy.ID = pharmacist_det.PHARM_ALLOCATED
-    WHERE pharmacist_det.USERNAME = '$Username'");
-
-     $pharmacy =  mysqli_fetch_assoc($result);
-        if (!empty($pharmacy)){echo     '<div class="description wow fadeInUp"><p>Current Pharmacy: <u>'.$pharmacy['PHARM_NAME'].'</u></p></div>';}
-     }
-
-   ?> 
                         </div>
                     </div>
-                
+                    
                 </div>
             </div>
             <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 401px; width: 100%; z-index: -999998; position: absolute;"><img src="img/backgrounds/bg2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -333.833px;"></div>

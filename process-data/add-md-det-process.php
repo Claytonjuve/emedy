@@ -12,16 +12,27 @@
 	$title = mysqli_real_escape_string($connection, trim($_POST['Title']));
 
 
+
+
+	 //Generate Random Password
+$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
+$password = substr( str_shuffle( $chars ), 0, 8 );
+	//encrypt pwd
+$passwordEncrypted = hash('sha512',$password);
+
+
 	$query = "SELECT * FROM login WHERE USERNAME = '$mdUsername'";
 	//result true or false
 	$result = mysqli_query($connection, $query) or die("Error in query here: " . mysqli_error($connection));
+
+
 	
 	//get 1 row here
 	$row = mysqli_fetch_assoc($result);
 	if(empty($row)){
 				//insert new product
 		$query = "INSERT INTO login (PASSWORD, ROLE, USERNAME)
-				  VALUES ('test', 'md', '$mdUsername')";
+				  VALUES ('$passwordEncrypted', 'md', '$mdUsername')";
 		$result = mysqli_query($connection, $query) or die("Error in query22 " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
 }
@@ -42,6 +53,25 @@
 		$product_id = mysqli_insert_id($connection);
 		$_SESSION['success'] = "Doctor added!";
 
+
+	
+
+		//send email process
+      $subject = 'eMedy New User Login Details';
+      $body = 'Dear ' .$mdSurname. ' ' .$mdName. '
+			Your eMedy account is created. Kindly login with the following details:
+			Username: ' .$mdUsername.' 
+			Password: ' .$password.  '
+			May we remind you to change your password as soon as you login. ';
+
+
+	  $headers = 'From: itservices@emedy.com' . "\r\n" 
+			    .'Reply-To: itservices@emedy.com';
+	   
+		// send email
+		mail("itservices@emedy.com", $subject, $body, $headers);
+
+		
 		header('Location: ../admin-home.php');
 		exit();
 	} else {

@@ -6,11 +6,17 @@
 	//extract all the required variables and validate them
 	$ptId = mysqli_real_escape_string($connection, trim($_POST['ptId']));
 	
-	$drug_det = mysqli_real_escape_string($connection, trim($_POST['drugSearch']));
-	$duration = mysqli_real_escape_string($connection, trim($_POST['duration']));
-	$usage = mysqli_real_escape_string($connection, trim($_POST['usage']));
-	$nul = NULL;
-	$pharm01 = 'pharm01';
+	$drug_det0 = mysqli_real_escape_string($connection, trim($_POST['drugSearch0']));
+	$duration0 = mysqli_real_escape_string($connection, trim($_POST['duration0']));
+	$Date = date("Y-m-d");
+	$newDuration0 = date('Y-m-d', strtotime($Date. " + $duration0 days"));
+	$usage0 = mysqli_real_escape_string($connection, trim($_POST['usage0']));
+	$drug_det1 = mysqli_real_escape_string($connection, trim($_POST['drugSearch1']));
+	$duration1 = mysqli_real_escape_string($connection, trim($_POST['duration1']));
+	$usage1 = mysqli_real_escape_string($connection, trim($_POST['usage1']));
+	$mdId = mysqli_real_escape_string($connection, trim($_POST['mdId']));
+	$curOrderId = mysqli_real_escape_string($connection, trim($_POST['orderId']));
+	$newOrderId = $curOrderId += 1;
 
 
 
@@ -23,25 +29,80 @@
 	//get 1 row here
 	$row = mysqli_fetch_assoc($result);
 	if(empty($row)){
-				//insert new product
-		$query = " INSERT INTO prescription_order (ID, ITEM, PATIENT_ID, MD_ID, DRUG_ID, ORDER_DATE, DURATION, USAGE_ID, STATUS)
-				  VALUES ('','', '$ptId', 10, '$drug_det', curdate(), '$duration' ,'$usage', '1')";
+				//insert new items in prescription - seq 0
+		$query = " INSERT INTO prescription_order (ID, ORDER_ID, ITEM, PATIENT_ID, MD_ID, DRUG_ID, ORDER_DATE, ORDER_TIME, DURATION, USAGE_ID, STATUS, DURATION_DAYS)
+				  VALUES ('', '$curOrderId', '0', '$ptId', '$mdId', '$drug_det0', curdate(), now(),'$newDuration0' ,'$usage0', '1', '$duration0')";
 		$result = mysqli_query($connection, $query) or die("Error in query44: " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
-		$_SESSION['success'] = "Prescription added!";
+		
+				//insert new items in prescription - seq 1
 
-		header('Location: ../md-home.php');
-		exit();
-	} else {
-		//update existing patient
-		$query = "UPDATE patient 
-				  SET NAME = '$ptName', SURNAME = '$ptSurname', PATIENT_ID = '$ptId', EMAIL = '$ptEmail', Title = '$ptTitle', CONTACT_NO = '$ptTel'
-				  WHERE PATIENT_ID = '$ptId'";
-		$result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
-		$_SESSION['success'] = "Patient updated!";
-		header('Location: ../md-home.php');
-		exit();
+		if (!empty($drug_det1)){
+			$query = " INSERT INTO prescription_order (ID, ORDER_ID, ITEM, PATIENT_ID, MD_ID, DRUG_ID, ORDER_DATE, ORDER_TIME, DURATION, USAGE_ID, STATUS, DURATION_DAYS)
+				  VALUES ('','$curOrderId', '1', '$ptId', '$mdId', '$drug_det1', curdate(), now(), '$duration1' ,'$usage1', '1', '$duration1')";
+				$result = mysqli_query($connection, $query) or die("Error in query44: " . mysqli_error($connection));
+				$product_id = mysqli_insert_id($connection);
 
-	}
-	
+				$_SESSION['success'] = "Prescription added!";
+		//	header('Location: ../md-home.php');
+		//	exit(); 
+		} else { 
+
+
+
+
+			$_SESSION['success'] = "Prescription added!";
+			//header('Location: ../md-home.php');
+			//exit(); 
+	} 
+	} else { 
+			$_SESSION['success'] = "Prescription added!";
+			
+	} 
+
+	//send email process
+
+ 	$query = "SELECT * FROM prescription_order
+ left join	drug on drug.ID = prescription_order.DRUG_ID
+ 	WHERE ORDER_ID = '$newOrderId'"; //get order details
+    $result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
+    
+    //show in the table
+    while($order_det = mysqli_fetch_assoc($result)) {
+      
+      $subject = 'Medical Prescription Submitted. Order Number - '.$order_det['ORDER_ID'].' ';
+    } 
+
+             //get patient details
+    $ptSurname = mysqli_real_escape_string($connection, trim($_POST['ptSurname']));
+    $ptName = mysqli_real_escape_string($connection, trim($_POST['ptName']));
+
+	$body1 = 'Dear ' .$ptSurname. ' ' .$ptName. '
+			Order has been submitted.
+			Kindly visit your preferred pharmacy to collect the below drugs.';
+
+
+	$query = "SELECT * FROM prescription_order JOIN drug on drug.ID = prescription_order.DRUG_ID  WHERE ORDER_ID = '$curOrderId +=1'"; //get order details
+    $result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
+    
+    //show in the table
+    
+    while($order_det = mysqli_fetch_array($result)){
+$body2 =  '<p>Drug Name: '.$order_det['NAME'].'.</p>' ;
+
+//works in progress
+foreach($body2 as $druglist){$body1 .= "$druglist\n<br />";}
+
+}
+
+$body = $body1. ' ' .$druglist;
+
+$headers = 'From: prescription@emedy.com' . "\r\n" 
+			.'Reply-To: prescription@emedy.com';
+	   
+// send email
+mail("webmaster@example.com", $subject, $body, $headers);
+
+header('Location: ../md-home.php');
+			exit(); 
 	?>

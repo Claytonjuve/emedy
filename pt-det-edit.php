@@ -32,7 +32,7 @@
     
     //show in the table
     while($pt_det = mysqli_fetch_assoc($result)) {
-      echo '<option value="'.$pt_det['PATIENT_ID'].'_'.$pt_det['NAME'].'_'.$pt_det['SURNAME'].'_'.$pt_det['EMAIL'].'_'.$pt_det['CONTACT_NO'].'_'.$pt_det['ID'].'_'.$pt_det['SHORTNAME'].'" data-select2-id="select2-data-141-mcra">'.$pt_det['PATIENT_ID'].' - '.$pt_det['SHORTNAME'].' '.$pt_det['NAME'].' '.$pt_det['SURNAME'].'</option>';
+      echo '<option value="'.$pt_det['PATIENT_ID'].'_'.$pt_det['PT_NAME'].'_'.$pt_det['SURNAME'].'_'.$pt_det['EMAIL'].'_'.$pt_det['CONTACT_NO'].'_'.$pt_det['ID'].'_'.$pt_det['SHORTNAME'].'" data-select2-id="select2-data-141-mcra">'.$pt_det['PATIENT_ID'].' - '.$pt_det['SHORTNAME'].' '.$pt_det['NAME'].' '.$pt_det['SURNAME'].'</option>';
     }
     ?>
 
