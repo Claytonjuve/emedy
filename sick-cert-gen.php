@@ -51,7 +51,7 @@
 
  <div class="col-sm-12">
   <br/>
-  <a href="sick-cert.php"><input type="button" class="btn btn-success" value="Go Back"></a>
+  <a href="sick-cert.php"><input type="button" class="btn btn-dark" value="Go Back"></a>
   <input type="button" class="btn btn-success" onclick="printCertificate();" value="Print">
 </div>
 

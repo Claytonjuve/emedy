@@ -1,8 +1,10 @@
 <?php
+	//open php session
 	if (session_status() == PHP_SESSION_NONE) {
     	session_start();
 	}
 
+	//open connaction for database
 	require_once('connect_db.php');
 
 	    $connection = OpenCon();
@@ -17,19 +19,7 @@
 	$Username = $_SESSION['currentUser'];
 
 
-
-	// Generate Random Password
-/*$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
-$password = substr( str_shuffle( $chars ), 0, 8 );
-
-
-// Encrypt password
-$password = password_hash($password, PASSWORD_ARGON2I);
-
-
-
-	//$password = substr( str_shuffle( $chars ), 0, 8 );
-*/
+	//query to validate 2fa with the user
 	$query = "SELECT * FROM login WHERE USERNAME = '$Username'
 		AND 2FA_1 = $pin1
 		AND 2FA_2 = $pin2

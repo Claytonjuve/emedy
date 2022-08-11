@@ -76,8 +76,35 @@
       <input type="email" class="form-control" id="pharmEmail" name="pharmEmail" placeholder="Email">
     </div>
   </div>
+      <div class="form-group row">
+    <label for="pharmacy" class="col-sm-2 col-form-label">Pharmacy</label>
+    <div class="col-sm-10">
+      <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="pharmacy" name="pharmacy" placeholder="" style="width: 100%" tabindex="-1" aria-hidden="true">
+     <option value="" data-select2-id="select2-data-141-mcra"></option>
+           <?php
+      //get a connection to the database
+    require_once('process-data/connect_db.php');
+
+      $connection = OpenCon();
+    
+    //get all data
+    $query = "SELECT *
+          FROM pharmacy
+          
+          ORDER BY PHARM_NAME ASC";
+    $result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
+    
+    //show in the table
+    while($pharmacy = mysqli_fetch_assoc($result)) {
+      echo '<option value="'.$pharmacy['ID'].' data-select2-id="select2-data-141-mcra">'.$pharmacy['PHARM_NAME'].'</option>';
+    }
+    ?>
 
 
+  </select>
+    </div>
+  </div>
+  <a href="admin-home.php"><input type="button" class="btn btn-dark" value="Back"></a>
   <input type="submit" class="btn btn-success" value="Submit">
 </div>
 </form>
@@ -90,12 +117,14 @@
     var pharmSurname = document.getElementById('mdSearch').value.split('_')[2].split('_')[0]; 
     var pharmUsername = document.getElementById('mdSearch').value.split('_')[3].split('_')[0]; 
     var pharmEmail = document.getElementById('mdSearch').value.split('_')[4].split('_')[0]; 
+    //var pharmacy = document.getElementById('mdSearch').value.split('_')[5].split('_')[0]; 
         
         document.getElementById("pharmId").value = pharmId; //populate  data
         document.getElementById("pharmName").value = pharmName; 
         document.getElementById("pharmSurname").value = pharmSurname; 
         document.getElementById("pharmUsername").value = pharmUsername; 
         document.getElementById("pharmEmail").value = pharmEmail;
+       // document.getElementById("pharmacy").value = pharmacy;
    }
 
 

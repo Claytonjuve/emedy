@@ -17,6 +17,14 @@
 <head>
 	<title>eMedy Login Screen</title>
 
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="192x192" href="ico/android-chrome-192x192.png">
+        <link rel="apple-touch-icon-precomposed" sizes="512x512" href="ico/android-chrome-512x512.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" rel="stylesheet" id="bootstrap-css">
@@ -50,10 +58,12 @@
                 
             </div>
             <form action="process-data/login-process.php" method="POST">
-<article class="wrapper">
+
             <div class="login_form_wrapper">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-12 col-md-offset-12">&nbsp;</div>
+                    <div class="col-md-2 col-md-offset-2"></div>
                     <div class="col-md-8 col-md-offset-2">
                         <!-- login_wrapper -->
                         <div>
@@ -72,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="login_remember_box">
-                                <a href="contact-us.php" class="forget_password">
+                                <a href="contact-us.php" class="forget_password" target="_blank">
                                     Forgot Password
                                 </a>
                             </div>
@@ -80,7 +90,7 @@
                                 <input type="submit" value="Login" class="btn btn-success"> 
                             </div>
                             <div class="login_message">
-                                <p>Don&rsquo;t have an account ? <a href="contact-us.php"> Contact eMedy </a> </p>
+                                <p>Don&rsquo;t have an account ? <a href="contact-us.php" target="_blank"> Contact eMedy </a> </p>
                             </div>
                         </div>
                         <!-- /.login_wrapper-->
@@ -90,7 +100,7 @@
         </form>
     
         </div>
-</article>
+
 </body>
 
 </body>

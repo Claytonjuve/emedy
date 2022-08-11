@@ -22,7 +22,6 @@
                     </div>
                 </div>
                 <div class="row">
-                   <!-- <a href="<?=$link0;?>"> -->
                     <a href="pt-det-edit.php">
                     <div class="col-md-4 section-1-box wow fadeInUp">
                         <div class="row">
@@ -67,22 +66,7 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <a href="prescription-edit.php">
-                    <div class="col-md-4 section-1-box wow fadeInUp">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="section-1-box-icon">
-                                    <i class="fas fa-hospital"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h3>Retrieve Prescription</h3>
-                                <p>You can update/delete a prescription from here</p>
-                            </div>
-                        </div>
-                    </a>
-                    </div>
+
 
             </div>
         </div>

@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
           $query = "INSERT INTO  prescription_history
             (ID, ORDER_ID, ITEM, PHARMACISTS_ID, PHARMACY_ID, COMPLETED_DATE)
             VALUE('', '$orderId', '$item',  '$pharmacistId',  '$pharmacyId', curdate())";
-          $result = mysqli_query($connection, $query) or die("Error in query ** : " . mysqli_error($connection));
+          $result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
           $product_id = mysqli_insert_id($connection);
 
 

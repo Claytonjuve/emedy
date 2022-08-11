@@ -43,7 +43,7 @@
 
 
     </div>
-    <button type="submit" class="btn btn-success">Search</button>
+
   </div>
 </div>
 <div class="row"></div>
@@ -53,31 +53,31 @@
   <div class="form-group row">
     <label for="mdSurname" class="col-sm-2 col-form-label">Surname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="mdSurname" name="mdSurname" placeholder="Surname">
+      <input type="text" class="form-control" id="mdSurname" name="mdSurname" placeholder="Surname" required>
     </div>
   </div>
     <div class="form-group row">
     <label for="mdName" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="mdName" name="mdName" placeholder="Name">
+      <input type="text" class="form-control" id="mdName" name="mdName" placeholder="Name" required>
     </div>
   </div>
     <div class="form-group row">
     <label for="mdUsername" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="mdUsername" name="mdUsername" placeholder="Username">
+      <input type="text" class="form-control" id="mdUsername" name="mdUsername" placeholder="Username" required>
     </div>
   </div>
       <div class="form-group row">
     <label for="mdId" class="col-sm-2 col-form-label">Reg Number</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="mdId" name="mdId" placeholder="Reg Num">
+      <input type="text" class="form-control" id="mdId" name="mdId" placeholder="Reg Num" required>
     </div>
   </div>
     <div class="form-group row">
     <label for="mdEmail" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="mdEmail" name="mdEmail" placeholder="Email">
+      <input type="email" class="form-control" id="mdEmail" name="mdEmail" placeholder="Email" required>
     </div>
   </div>
 
@@ -115,7 +115,8 @@
 </form>
 
 
-  <script type="text/javascript"> //extracts patients details
+  <script type="text/javascript"> 
+  //extracts the value from the dropdown and split the doctors details
     function ShowMdDetails(){
     var mdId = document.getElementById('mdSearch').value.split('_')[0].split('_')[0]; //extracts data
     var mdName = document.getElementById('mdSearch').value.split('_')[1].split('_')[0]; 
@@ -124,7 +125,8 @@
     var mdEmail = document.getElementById('mdSearch').value.split('_')[4].split('_')[0]; 
     var mdTitle = document.getElementById('mdSearch').value.split('_')[5].split('_')[0]; 
         
-        document.getElementById("mdId").value = mdId; //populate  data
+        //populate  data
+        document.getElementById("mdId").value = mdId; 
         document.getElementById("mdName").value = mdName; 
         document.getElementById("mdSurname").value = mdSurname; 
         document.getElementById("mdUsername").value = mdUsername; 

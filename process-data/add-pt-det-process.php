@@ -1,4 +1,5 @@
 <?php
+	//open db connection
 	require_once('connect_db.php');
 
 	    $connection = OpenCon();
@@ -14,7 +15,7 @@
 
 
 
-
+	//get patient details based on the id inputted
 	$query = "SELECT * FROM patient WHERE PATIENT_ID = '$ptId'";
 	//result true or false
 	$result = mysqli_query($connection, $query) or die("Error in query 2: " . mysqli_error($connection));
@@ -22,14 +23,14 @@
 	//get 1 row here
 	$row = mysqli_fetch_assoc($result);
 	if(empty($row)){
-				//insert new product
+				//insert new patient
 		$query = "INSERT INTO patient (PATIENT_ID, SURNAME, PT_NAME, EMAIL, CONTACT_NO, TITLE)
 				  VALUES ('$ptId', '$ptSurname', '$ptName', '$ptEmail', '$ptTel' ,'$ptTitle')";
-		$result = mysqli_query($connection, $query) or die("Error in query44: " . mysqli_error($connection));
+		//if no issues with the query store data in $result else show error message
+		$result = mysqli_query($connection, $query) or die("Error in query: " . mysqli_error($connection));
 		$product_id = mysqli_insert_id($connection);
-		$_SESSION['success'] = "Patient added!";
-
-		header('Location: ../md-home.php');
+		$_SESSION['success'] = "Patient added!"; // success message
+		header('Location: ../md-home.php'); //page redirection
 		exit();
 	} else {
 		//update existing patient

@@ -1,3 +1,4 @@
+/* most of this js was found online */
 
 function scroll_to(clicked_link, nav_height) {
 	var element_class = clicked_link.attr('href').replace('#', '.');

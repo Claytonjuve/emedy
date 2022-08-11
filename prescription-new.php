@@ -165,7 +165,7 @@
 
 <!-- ROW 0 -->
   <div class="form-group row">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
     
 <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="drugSearch" name="drugSearch0" placeholder="Search Drug" style="width: 100%" tabindex="-1" aria-hidden="true" required>
      <option value="" data-select2-id="select2-data-141-mcra">Search Drug</option>
@@ -190,8 +190,8 @@
   </select>
 
 </div>
-<div class="col-md-3">
-<select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="usage" name="usage0" placeholder="Drug Usage" style="width: 100%" tabindex="-1" aria-hidden="true" required>
+<div class="col-md-5">
+<select class="type-dropdown control-label select2-hidden-accessible col-sm-12" id="usage" name="usage0" placeholder="Drug Usage" style="width: 100%" tabindex="-1" aria-hidden="true" required>
 <option value="" data-select2-id="select2-data-141-mcra">Usage</option>
       <?php
       //get a connection to the database
@@ -212,7 +212,7 @@
 </select>
  </div> 
 
-<div class="col-md-2">
+<div class="col-md-1">
 <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="duration0" name="duration0" placeholder="Days" style="width: 100%" tabindex="-1" aria-hidden="true" required>
 <option value="" data-select2-id="select2-data-141-mcra">Days</option>
 </select>
@@ -229,7 +229,7 @@
 <!-- ROW 1 -->
 
  <div class="form-group row" id="row-1" style="display:none;">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
     
 <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="drugSearch1" name="drugSearch1" placeholder="Search Drug" style="width: 100%" tabindex="-1" aria-hidden="true" >
      <option value="" data-select2-id="select2-data-141-mcra">Search Drug</option>
@@ -254,9 +254,9 @@
   </select>
 
 </div>
-<div class="col-md-3">
+<div class="col-md-5">
 <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="usage1" name="usage1" placeholder="Drug Usage" style="width: 100%" tabindex="-1" aria-hidden="true" >
-<option value="" data-select2-id="select2-data-141-mcra">Usage</option>
+<option data-select2-id="select2-data-141-mcra">Usage</option>
       <?php
       //get a connection to the database
     require_once('process-data/connect_db.php');
@@ -276,13 +276,13 @@
 </select>
  </div> 
 
-<div class="col-md-2">
+<div class="col-md-1">
 <select class="type-dropdown control-label select2-hidden-accessible col-sm-6" id="duration1" name="duration1" placeholder="Days" style="width: 100%" tabindex="-1" aria-hidden="true" >
 <option value="" data-select2-id="select2-data-141-mcra">Days</option>
 </select>
 </div>
 <div class="col-md-1">
- <input type="button" class="btn btn-success" id = "btnAdd" onclick="AddDropDownList()" value = "Add New Prescription" />
+ <input type="button" class="btn btn-success" id = "btnRmv" onclick="RemoveDropDownList()" value = "Remove Prescription" />
 </div>
 <div id = "dvContainer">
   
@@ -311,7 +311,8 @@
     var ptTel = document.getElementById('ptSearch').value.split('_')[4].split('_')[0]; 
     var ptTitleValue = document.getElementById('ptSearch').value.split('_')[5].split('_')[0]; 
     
-        document.getElementById("ptId").value = ptId; //populate  data
+        //populate  data in input fields
+        document.getElementById("ptId").value = ptId; 
         document.getElementById("ptName").value = ptName; 
         document.getElementById("ptSurname").value = ptSurname; 
         document.getElementById("ptTel").value = ptTel; 
@@ -342,10 +343,27 @@
     duration.innerHTML = "<option>Days</option>" + contents;
 
 
+    //show 2nd row of prescription
     function AddDropDownList(){
       document.getElementById("row-1").style = "block";
     }
 
+      //hide 2nd row and blank any selected options
+        function RemoveDropDownList(){
+      document.getElementById("row-1").style.display = "none";
+    }
+
+
+    //blank data of 2nd row
+    $('select').select2({
+    placeholder : "select me" 
+    });
+
+    $( "#btnRmv" ).click(function() {    
+    $("#drugSearch1").val('').change();
+    $("#usage1").val('').change();
+    $("#duration1").val('').change();
+  });
 
     </script>
 

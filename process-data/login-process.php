@@ -13,7 +13,7 @@
 	$Username = mysqli_real_escape_string($connection, trim($_POST['Username']));
 	$Password = mysqli_real_escape_string($connection, trim($_POST['Password']));
 	
-	//encrypted password
+	//hash password
 	$passwordEncrypted = hash('sha512',$Password);
 
 	//check if the email is in the database and if the encrypted password matches

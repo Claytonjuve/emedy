@@ -10,7 +10,7 @@
 
 <form action="sick-cert-gen.php" method="POST">
 	<div class="container">
-    <h2>Cretae a Sick Certificate</h2>
+    <h2>Create a Sick Certificate</h2>
 <h6>Retreive a patient username</h6>
   <div class="form-group row">
     <label for="ptSearch" class="col-sm-2 col-form-label">Search Patient</label>
@@ -33,7 +33,7 @@
     
     //show in the table
     while($pt_det = mysqli_fetch_assoc($result)) {
-      echo '<option value="'.$pt_det['PATIENT_ID'].'_'.$pt_det['NAME'].'_'.$pt_det['SURNAME'].'_'.$pt_det['EMAIL'].'_'.$pt_det['CONTACT_NO'].'_'.$pt_det['ID'].'_'.$pt_det['SHORTNAME'].'" data-select2-id="select2-data-141-mcra">'.$pt_det['PATIENT_ID'].' - '.$pt_det['SHORTNAME'].' '.$pt_det['NAME'].' '.$pt_det['SURNAME'].'</option>';
+      echo '<option value="'.$pt_det['PATIENT_ID'].'_'.$pt_det['PT_NAME'].'_'.$pt_det['SURNAME'].'_'.$pt_det['EMAIL'].'_'.$pt_det['CONTACT_NO'].'_'.$pt_det['ID'].'_'.$pt_det['SHORTNAME'].'" data-select2-id="select2-data-141-mcra">'.$pt_det['PATIENT_ID'].' - '.$pt_det['SHORTNAME'].' '.$pt_det['NAME'].' '.$pt_det['SURNAME'].'</option>';
     }
     ?>
 
@@ -125,7 +125,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-    <label for="disease">Disease</label>
+    <label for="disease">Diagnosis</label>
     <input type="text" name="disease" width="100%" required />
 </div>
 </div>
